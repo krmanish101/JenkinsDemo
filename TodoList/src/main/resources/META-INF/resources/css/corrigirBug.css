@@ -1,0 +1,17 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22/07/2016, 21:45:51
+    Author     : julia
+*/
+
+.title {
+    height: 60px !important;
+}
+
+div#menuForm:j_idt10.navbar.navbar-default{
+    margin-bottom: 0 !important;
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://ifrn.edu.br/conta"
+                template="layout/template.xhtml">
+    <ui:define name="content">
+        <c:crud title="Projetos" managedBean="#{projetoCrudMBean}" showDeleteActionLink="false">
+            <ui:define name="listColumns">
+                <p:column headerText="Nome" sortBy="#{bean.nome}" filterBy="#{bean.nome}" >
+                    <h:outputText value="#{bean.nome}" />
+                </p:column>
+                <p:column headerText="Usuário" sortBy="#{bean.usuario.nome}" filterBy="#{bean.usuario.nome}" >
+                    <h:outputText value="#{bean.usuario.nome}" />
+                </p:column>
+            </ui:define>
+            <ui:define name="detail">
+                <h:panelGrid columns="2" cellpadding="3">
+                    <c:text readonly="true" value="#{projetoCrudMBean.bean.nome}" label="Nome" />
+                    <c:text readonly="true" value="#{projetoCrudMBean.bean.usuario.nome}" label="Usuário" />
+                </h:panelGrid>
+            </ui:define>
+            <ui:define name="insert">
+                <h:panelGrid columns="2" cellpadding="3">
+                    <c:text id="insertNome" required="true" value="#{projetoCrudMBean.bean.nome}" label="Nome" />
+                    <c:select id="insertUsuario" required="true" value="#{projetoCrudMBean.bean.usuario}" label="Usuário" options="#{usuarioOptions}"/>
+                </h:panelGrid>
+            </ui:define>
+            <ui:define name="update">
+                <h:panelGrid columns="2" cellpadding="3">
+                    <c:text required="true" value="#{projetoCrudMBean.bean.nome}" label="Nome" />
+                    <c:select required="true" value="#{projetoCrudMBean.bean.usuario}" label="Usuário" options="#{usuarioOptions}"/>
+                </h:panelGrid>
+            </ui:define>
+        </c:crud>
+    </ui:define>
+</ui:composition>

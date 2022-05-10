@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://ifrn.edu.br/conta"
+                template="layout/template.xhtml">
+    <ui:define name="content">
+        <c:crud title="Intervalos" managedBean="#{intervaloCrudMBean}" showDeleteActionLink="false">
+            <ui:define name="listColumns">
+                <p:column headerText="ID" sortBy="#{bean.id}" filterBy="#{bean.id}" >
+                    <h:outputText value="#{bean.id}" />
+                </p:column>
+                <p:column headerText="Início" sortBy="#{bean.horaInicio}" >
+                    <c:date id="listaInicio" pattern="dd/MM/yyyy HH:mm:ss" readonly="true" value="#{bean.horaInicio}" />
+                </p:column>
+                <p:column headerText="Fim" sortBy="#{bean.horaFim}" >
+                    <c:date id="listaFim" pattern="dd/MM/yyyy HH:mm:ss" readonly="true" value="#{bean.horaFim}" />
+                </p:column>
+                
+            </ui:define>
+            
+            <ui:define name="detail">
+                <h:panelGrid columns="2" cellpadding="3">
+                    <c:text readonly="true" value="#{intervaloCrudMBean.bean.id}" label="ID" />
+                    <c:date pattern="dd/MM/yyyy HH:mm:ss" readonly="true" value="#{intervaloCrudMBean.bean.horaInicio}" label="Início"/>
+                    <c:date pattern="dd/MM/yyyy HH:mm:ss" readonly="true" value="#{intervaloCrudMBean.bean.horaFim}" label="Fim"/>
+                </h:panelGrid>
+            </ui:define>
+            
+            <ui:define name="insert">
+                <h:panelGrid columns="2" cellpadding="3">
+                    <c:date id="insertInicio" required="true" pattern="dd/MM/yyyy HH:mm:ss" value="#{intervaloCrudMBean.bean.horaInicio}" label="Início"/>
+                    <c:date id="insertFim" required="true" pattern="dd/MM/yyyy HH:mm:ss" value="#{intervaloCrudMBean.bean.horaFim}" label="Fim"/>
+                </h:panelGrid>
+            </ui:define>
+            
+            <ui:define name="update">
+                <h:panelGrid columns="2" cellpadding="3">
+                    <c:date required="true" pattern="dd/MM/yyyy HH:mm:ss" value="#{intervaloCrudMBean.bean.horaInicio}" label="Início"/>
+                    <c:date required="true" pattern="dd/MM/yyyy HH:mm:ss" value="#{intervaloCrudMBean.bean.horaFim}" label="Fim"/>
+                </h:panelGrid>
+            </ui:define>
+        </c:crud>
+    </ui:define>
+</ui:composition>
